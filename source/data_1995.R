@@ -20,6 +20,85 @@ places %>%
   select(year, name, placefp) %>%
   arrange(name) -> placesSub
 
+# create kansas city object
+kansas_city <- tibble(
+  name = "Kansas City",
+  pop = NA,
+  homicide = NA,
+  rape = NA,
+  robbery = NA,
+  ag_assault = NA,
+  burglary = NA,
+  larceny = NA,
+  mv_larceny = NA,
+  arson = NA
+)
+
+# create st. jo object
+st_jo <- tibble(
+  name = "St. Joseph",
+  pop = NA,
+  homicide = NA,
+  rape = NA,
+  robbery = NA,
+  ag_assault = NA,
+  burglary = NA,
+  larceny = NA,
+  mv_larceny = NA,
+  arson = NA
+)
+
+# create st. louis object
+st_louis <- tibble(
+  name = "St. Louis",
+  pop = NA,
+  homicide = NA,
+  rape = NA,
+  robbery = NA,
+  ag_assault = NA,
+  burglary = NA,
+  larceny = NA,
+  mv_larceny = NA,
+  arson = NA
+)
+
+# create springfield object
+springfield <- tibble(
+  name = "Springfield",
+  pop = NA,
+  homicide = NA,
+  rape = NA,
+  robbery = NA,
+  ag_assault = NA,
+  burglary = NA,
+  larceny = NA,
+  mv_larceny = NA,
+  arson = NA
+)
+
+# create university city object
+u_city <- tibble(
+  name = "University City",
+  pop = NA,
+  homicide = NA,
+  rape = NA,
+  robbery = NA,
+  ag_assault = NA,
+  burglary = NA,
+  larceny = NA,
+  mv_larceny = NA,
+  arson = NA
+)
+
+# combine
+data <- bind_rows(kansas_city, st_jo, st_louis, springfield, u_city)
+
+# add place data
+data <- left_join(placesSub, data, by = "name")
+
+# clean-up enviornment
+rm(placesSub, kansas_city, st_jo, st_louis, springfield, u_city)
+
 pop <- tibble(
   name = index,
   count = c(20257, 22087, 10864, 20871, 12805,
@@ -55,7 +134,7 @@ homicide <- tibble(
             5, 1, 1, 0, 0)
 )
 
-homicide <- left_join(placesSub, homicide, by = "name") 
+# homicide <- left_join(placesSub, homicide, by = "name") 
 
 arson <- tibble(
   name = index,
