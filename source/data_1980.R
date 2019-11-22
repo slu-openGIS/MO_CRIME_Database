@@ -94,25 +94,25 @@ rm(placesSub, kansas_city, st_jo, st_louis, springfield, u_city)
 popTable <- subset_tables(input = data, table = "population")
 
 # update homicide object
-# homicideTable <- subset_tables(input = data, table = "homicide")
+homicideTable <- subset_tables(input = data, table = "homicide")
 
 # update robbery object
-# robberyTable <- subset_tables(input = data, table = "robbery")
+robberyTable <- subset_tables(input = data, table = "robbery")
 
 # update aggrevated assault object
-# agAssaultTable <- subset_tables(input = data, table = "aggravated assault")
+agAssaultTable <- subset_tables(input = data, table = "aggravated assault")
 
 # create rape object
-# rapeTable <- subset_tables(input = data, table = "rape")
+rapeTable <- subset_tables(input = data, table = "rape")
 
 # create burlary object
-# burglaryTable <- subset_tables(input = data, table = "burglary")
+burglaryTable <- subset_tables(input = data, table = "burglary")
 
 # create larceny object
-# larcenyTable <- subset_tables(input = data, table = "larceny")
+larcenyTable <- subset_tables(input = data, table = "larceny")
 
 # create auto theft object
-# autoTheftTable <- subset_tables(input = data, table = "auto theft")
+autoTheftTable <- subset_tables(input = data, table = "auto theft")
 
 # create arson object
 arsonTable <- subset_tables(input = data, table = "arson")

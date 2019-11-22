@@ -15,13 +15,13 @@ places %>%
 kansas_city <- tibble(
   name = "Kansas City",
   pop = 441162,
-  homicide = NA,
-  rape = NA,
-  robbery = NA,
-  ag_assault = NA,
-  burglary = NA,
-  larceny = NA,
-  mv_larceny = NA,
+  homicide = 150,
+  rape = 564,
+  robbery = 4494,
+  ag_assault = 7386,
+  burglary = 12551,
+  larceny = 21846,
+  mv_larceny = 8042,
   arson = 508
 )
 
@@ -29,13 +29,13 @@ kansas_city <- tibble(
 st_jo <- tibble(
   name = "St. Joseph",
   pop = 72917,
-  homicide = NA,
-  rape = NA,
-  robbery = NA,
-  ag_assault = NA,
-  burglary = NA,
-  larceny = NA,
-  mv_larceny = NA,
+  homicide = 2,
+  rape = 23,
+  robbery = 48,
+  ag_assault = 288,
+  burglary = 880,
+  larceny = 2943,
+  mv_larceny = 213,
   arson = 46
 )
 
@@ -43,13 +43,13 @@ st_jo <- tibble(
 st_louis <- tibble(
   name = "St. Louis",
   pop = 402573,
-  homicide = NA,
-  rape = NA,
-  robbery = NA,
-  ag_assault = NA,
-  burglary = NA,
-  larceny = NA,
-  mv_larceny = NA,
+  homicide = 231,
+  rape = 349,
+  robbery = 4936,
+  ag_assault = 7731,
+  burglary = 12303,
+  larceny = 25600,
+  mv_larceny = 8429,
   arson = 935
 )
 
@@ -57,13 +57,13 @@ st_louis <- tibble(
 springfield <- tibble(
   name = "Springfield",
   pop = 142578,
-  homicide = NA,
-  rape = NA,
-  robbery = NA,
-  ag_assault = NA,
-  burglary = NA,
-  larceny = NA,
-  mv_larceny = NA,
+  homicide = 8,
+  rape = 61,
+  robbery = 165,
+  ag_assault = 415,
+  burglary = 1961,
+  larceny = 7842,
+  mv_larceny = 464,
   arson = 104
 )
 
@@ -71,13 +71,13 @@ springfield <- tibble(
 u_city <- tibble(
   name = "University City",
   pop = 40681,
-  homicide = NA,
-  rape = NA,
-  robbery = NA,
-  ag_assault = NA,
-  burglary = NA,
-  larceny = NA,
-  mv_larceny = NA,
+  homicide = 4,
+  rape = 22,
+  robbery = 101,
+  ag_assault = 109,
+  burglary = 709,
+  larceny = 1447,
+  mv_larceny = 307,
   arson = 15
 )
 
@@ -94,25 +94,25 @@ rm(placesSub, kansas_city, st_jo, st_louis, springfield, u_city)
 popTable <- subset_tables(input = data, update = popTable, table = "population")
 
 # update homicide object
-# homicideTable <- subset_tables(input = data, update = homicideTable, table = "homicide")
+homicideTable <- subset_tables(input = data, update = homicideTable, table = "homicide")
 
 # update robbery object
-# robberyTable <- subset_tables(input = data, update = robberyTable, table = "robbery")
+robberyTable <- subset_tables(input = data, update = robberyTable, table = "robbery")
 
 # update aggrevated assault object
-# agAssaultTable <- subset_tables(input = data, update = agAssaultTable, table = "aggravated assault")
+agAssaultTable <- subset_tables(input = data, update = agAssaultTable, table = "aggravated assault")
 
 # create rape object
-# rapeTable <- subset_tables(input = data, update = rapeTable, table = "rape")
+rapeTable <- subset_tables(input = data, update = rapeTable, table = "rape")
 
 # create burlary object
-# burglaryTable <- subset_tables(input = data, update = burglaryTable, table = "burglary")
+burglaryTable <- subset_tables(input = data, update = burglaryTable, table = "burglary")
 
 # create larceny object
-# larcenyTable <- subset_tables(input = data, update = larcenyTable, table = "larceny")
+larcenyTable <- subset_tables(input = data, update = larcenyTable, table = "larceny")
 
 # create auto theft object
-# autoTheftTable <- subset_tables(input = data, update = autoTheftTable, table = "auto theft")
+autoTheftTable <- subset_tables(input = data, update = autoTheftTable, table = "auto theft")
 
 # create arson object
 arsonTable <- subset_tables(input = data, update = arsonTable, table = "arson")
