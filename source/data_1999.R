@@ -75,7 +75,7 @@ data %>%
   ) -> data
 
 # update population object
-popTable <- subset_tables(input = data, table = "population")
+popTable <- subset_tables(input = data, update = popTable, table = "population")
 
 # update homicide object
 homicideTable <- subset_tables(input = data, table = "homicide")
@@ -99,7 +99,7 @@ larcenyTable <- subset_tables(input = data, table = "larceny")
 autoTheftTable <- subset_tables(input = data, table = "auto theft")
 
 # create arson object
-arsonTable <- subset_tables(input = data, table = "arson")
+arsonTable <- subset_tables(input = data, update = arsonTable, table = "arson")
 
 # clean-up enviornment
 rm(data, year)

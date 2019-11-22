@@ -1,18 +1,9 @@
 
-index <- c("Arnold", "Ballwin", "Bellefontaine Neighbors", "Belton", "Berkeley", 
-           "Blue Springs", "Bridgeton", "Cape Girardeau", "Carthage", "Chesterfield", 
-           "Clayton", "Columbia", "Crestwood", 
-           "Creve Coeur", "Excelsior Springs", "Farmington", "Ferguson", "Florissant",
-           "Fulton", "Gladstone", "Grandview", "Hannibal", "Hazelwood", 
-           "Independence", "Jefferson City", "Jennings", "Joplin", "Kansas City", 
-           "Kennett", "Kirksville", "Kirkwood", "Lebanon", "Lee's Summit",
-           "Liberty", "Maplewood", "Marshall", "Maryland Heights", "Maryville", 
-           "Mexico", "Moberly", "O'Fallon", "Overland", "Park Hills",
-           "Poplar Bluff", "Raytown", "Richmond Heights", "Rolla", "St. Charles", 
-           "St. Joseph", "St. Louis", "St. Peters", "Sedalia", "Sikeston", 
-           "Springfield", "University City", "Warrensburg", "Washington", "Webster Groves")
+# create index of included cities
+index <- c("Kansas City", "St. Joseph", "St. Louis", "Springfield", "University City")
 year <- 1995
 
+# use index to parse places
 places %>%
   filter(NAME %in% index) %>%
   rename(name = NAME, placefp = PLACEFP) %>%
@@ -99,57 +90,32 @@ data <- left_join(placesSub, data, by = "name")
 # clean-up enviornment
 rm(placesSub, kansas_city, st_jo, st_louis, springfield, u_city)
 
-pop <- tibble(
-  name = index,
-  count = c(20257, 22087, 10864, 20871, 12805,
-            41287, 17931, 36249, 11158, 42666,
-            13824, 74717, 11261, 
-            12176, 11080, 12266, 22783, 51846,
-            10572, 27916, 25594, 18261, 15929,
-            112642, 37252, 16129, 43265, 445549,
-            11343, 17436, 28530, 10468, 47438,
-            21952, 10326, 12524, 26257, 10601,
-            11320, 12690, 20235, 18474, 13203,
-            17478, 30200, 10543, 14905, 56830,
-            72336, 371425, 46812, 20431, 18084,
-            151032, 41133, 16784, 11431, 23258)
-)
+# update population object
+popTable <- subset_tables(input = data, update = popTable, table = "population")
 
-pop <- left_join(placesSub, pop, by = "name") 
-popTable <- bind_rows(popTable, pop)
+# update homicide object
+# homicideTable <- subset_tables(input = data, update = homicideTable, table = "homicide")
 
-homicide <- tibble(
-  name = index,
-  count = c(2, 0, 0, 1, 0,
-            1, 0, 2, 0, 0,
-            0, 2, 1, 
-            0, 0, 0, 1, 2,
-            0, 0, 1, 1, 0,
-            2, 1, 1, 2, 107,
-            2, 0, 1, 0, 1,
-            0, 0, 0, 2, 1,
-            1, 1, 1, 1, 0,
-            0, 0, 3, 0, 0,
-            1, 204, 0, 1, 2,
-            5, 1, 1, 0, 0)
-)
+# update robbery object
+# robberyTable <- subset_tables(input = data, update = robberyTable, table = "robbery")
 
-# homicide <- left_join(placesSub, homicide, by = "name") 
+# update aggrevated assault object
+# agAssaultTable <- subset_tables(input = data, update = agAssaultTable, table = "aggravated assault")
 
-arson <- tibble(
-  name = index,
-  count = c(2, 0, 1, 2, 1,
-            5, 0, 2, 3, 8,
-            6, 26, 0,
-            0, 3, 0, 2, 3,
-            0, 7, 15, 16, 7,
-            60, 5, 8, 14, 479,
-            0, 0, 4, 1, 12,
-            4, 4, 1, 0, 2,
-            0, 1, 0 , 2, 1,
-            11, 5, 5, 3, 30, 
-            29, 769, 12, 0, 10,
-            97, 20, 3, 6, 6))
+# create rape object
+# rapeTable <- subset_tables(input = data, update = rapeTable, table = "rape")
 
-arson <- left_join(placesSub, arson, by = "name") 
-arsonTable <- bind_rows(arsonTable, arson)
+# create burlary object
+# burglaryTable <- subset_tables(input = data, update = burglaryTable, table = "burglary")
+
+# create larceny object
+# larcenyTable <- subset_tables(input = data, update = larcenyTable, table = "larceny")
+
+# create auto theft object
+# autoTheftTable <- subset_tables(input = data, update = autoTheftTable, table = "auto theft")
+
+# create arson object
+arsonTable <- subset_tables(input = data, update = arsonTable, table = "arson")
+
+# clean-up enviornment
+rm(index, data, year)

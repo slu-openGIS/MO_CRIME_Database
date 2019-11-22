@@ -14,7 +14,7 @@ places %>%
 # create kansas city object
 kansas_city <- tibble(
   name = "Kansas City",
-  pop = NA,
+  pop = 444382,
   homicide = NA,
   rape = NA,
   robbery = NA,
@@ -22,13 +22,13 @@ kansas_city <- tibble(
   burglary = NA,
   larceny = NA,
   mv_larceny = NA,
-  arson = NA
+  arson = 553
 )
 
 # create st. jo object
 st_jo <- tibble(
   name = "St. Joseph",
-  pop = NA,
+  pop = 74611,
   homicide = NA,
   rape = NA,
   robbery = NA,
@@ -36,13 +36,13 @@ st_jo <- tibble(
   burglary = NA,
   larceny = NA,
   mv_larceny = NA,
-  arson = NA
+  arson = 0
 )
 
 # create st. louis object
 st_louis <- tibble(
   name = "St. Louis",
-  pop = NA,
+  pop = 429414,
   homicide = NA,
   rape = NA,
   robbery = NA,
@@ -50,13 +50,13 @@ st_louis <- tibble(
   burglary = NA,
   larceny = NA,
   mv_larceny = NA,
-  arson = NA
+  arson = 563
 )
 
 # create springfield object
 springfield <- tibble(
   name = "Springfield",
-  pop = NA,
+  pop = 140378,
   homicide = NA,
   rape = NA,
   robbery = NA,
@@ -64,13 +64,13 @@ springfield <- tibble(
   burglary = NA,
   larceny = NA,
   mv_larceny = NA,
-  arson = NA
+  arson = 69
 )
 
 # create university city object
 u_city <- tibble(
   name = "University City",
-  pop = NA,
+  pop = 42579,
   homicide = NA,
   rape = NA,
   robbery = NA,
@@ -78,7 +78,7 @@ u_city <- tibble(
   burglary = NA,
   larceny = NA,
   mv_larceny = NA,
-  arson = NA
+  arson = 20
 )
 
 # combine
@@ -90,21 +90,32 @@ data <- left_join(placesSub, data, by = "name")
 # clean-up enviornment
 rm(placesSub, kansas_city, st_jo, st_louis, springfield, u_city)
 
-# create population object
-pop <- tibble(
-  name = index,
-  count = c(444382, 74611, 429414, 140378, 42579)
-)
+# update population object
+popTable <- subset_tables(input = data, update = popTable, table = "population")
 
-pop <- left_join(placesSub, pop, by = "name") 
-popTable <- bind_rows(popTable, pop)
+# update homicide object
+# homicideTable <- subset_tables(input = data, update = homicideTable, table = "homicide")
 
+# update robbery object
+# robberyTable <- subset_tables(input = data, update = robberyTable, table = "robbery")
+
+# update aggrevated assault object
+# agAssaultTable <- subset_tables(input = data, update = agAssaultTable, table = "aggravated assault")
+
+# create rape object
+# rapeTable <- subset_tables(input = data, update = rapeTable, table = "rape")
+
+# create burlary object
+# burglaryTable <- subset_tables(input = data, update = burglaryTable, table = "burglary")
+
+# create larceny object
+# larcenyTable <- subset_tables(input = data, update = larcenyTable, table = "larceny")
 
 # create auto theft object
-arson <- tibble(
-  name = index,
-  count = c(553, 0, 563, 69, 20)
-)
+# autoTheftTable <- subset_tables(input = data, update = autoTheftTable, table = "auto theft")
 
-arson <- left_join(placesSub, arson, by = "name") 
-arsonTable <- bind_rows(arsonTable, arson)
+# create arson object
+arsonTable <- subset_tables(input = data, update = arsonTable, table = "arson")
+
+# clean-up enviornment
+rm(index, data, year)
