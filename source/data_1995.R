@@ -1,18 +1,9 @@
 
-index <- c("Arnold", "Ballwin", "Bellefontaine Neighbors", "Belton", "Berkeley", 
-           "Blue Springs", "Bridgeton", "Cape Girardeau", "Carthage", "Chesterfield", 
-           "Clayton", "Columbia", "Crestwood", 
-           "Creve Coeur", "Excelsior Springs", "Farmington", "Ferguson", "Florissant",
-           "Fulton", "Gladstone", "Grandview", "Hannibal", "Hazelwood", 
-           "Independence", "Jefferson City", "Jennings", "Joplin", "Kansas City", 
-           "Kennett", "Kirksville", "Kirkwood", "Lebanon", "Lee's Summit",
-           "Liberty", "Maplewood", "Marshall", "Maryland Heights", "Maryville", 
-           "Mexico", "Moberly", "O'Fallon", "Overland", "Park Hills",
-           "Poplar Bluff", "Raytown", "Richmond Heights", "Rolla", "St. Charles", 
-           "St. Joseph", "St. Louis", "St. Peters", "Sedalia", "Sikeston", 
-           "Springfield", "University City", "Warrensburg", "Washington", "Webster Groves")
+# create index of included cities
+index <- c("Kansas City", "St. Joseph", "St. Louis", "Springfield", "University City")
 year <- 1995
 
+# use index to parse places
 places %>%
   filter(NAME %in% index) %>%
   rename(name = NAME, placefp = PLACEFP) %>%
@@ -20,57 +11,111 @@ places %>%
   select(year, name, placefp) %>%
   arrange(name) -> placesSub
 
-pop <- tibble(
-  name = index,
-  count = c(20257, 22087, 10864, 20871, 12805,
-            41287, 17931, 36249, 11158, 42666,
-            13824, 74717, 11261, 
-            12176, 11080, 12266, 22783, 51846,
-            10572, 27916, 25594, 18261, 15929,
-            112642, 37252, 16129, 43265, 445549,
-            11343, 17436, 28530, 10468, 47438,
-            21952, 10326, 12524, 26257, 10601,
-            11320, 12690, 20235, 18474, 13203,
-            17478, 30200, 10543, 14905, 56830,
-            72336, 371425, 46812, 20431, 18084,
-            151032, 41133, 16784, 11431, 23258)
+# create kansas city object
+kansas_city <- tibble(
+  name = "Kansas City",
+  pop = 445549,
+  homicide = 107,
+  rape = 470,
+  robbery = 3346,
+  ag_assault = 5811,
+  burglary = 9748,
+  larceny = 26301,
+  mv_larceny = 6792,
+  arson = 479
 )
 
-pop <- left_join(placesSub, pop, by = "name") 
-popTable <- bind_rows(popTable, pop)
-
-homicide <- tibble(
-  name = index,
-  count = c(2, 0, 0, 1, 0,
-            1, 0, 2, 0, 0,
-            0, 2, 1, 
-            0, 0, 0, 1, 2,
-            0, 0, 1, 1, 0,
-            2, 1, 1, 2, 107,
-            2, 0, 1, 0, 1,
-            0, 0, 0, 2, 1,
-            1, 1, 1, 1, 0,
-            0, 0, 3, 0, 0,
-            1, 204, 0, 1, 2,
-            5, 1, 1, 0, 0)
+# create st. jo object
+st_jo <- tibble(
+  name = "St. Joseph",
+  pop = 72336,
+  homicide = 1,
+  rape = 9,
+  robbery = 51,
+  ag_assault = 191,
+  burglary = 738,
+  larceny = 3805,
+  mv_larceny = 170,
+  arson = 29
 )
 
-homicide <- left_join(placesSub, homicide, by = "name") 
+# create st. louis object
+st_louis <- tibble(
+  name = "St. Louis",
+  pop = 371425,
+  homicide = 204,
+  rape = 273,
+  robbery = 5136,
+  ag_assault = 6839,
+  burglary = 10692,
+  larceny = 28587,
+  mv_larceny = 8005,
+  arson = 769
+)
 
-arson <- tibble(
-  name = index,
-  count = c(2, 0, 1, 2, 1,
-            5, 0, 2, 3, 8,
-            6, 26, 0,
-            0, 3, 0, 2, 3,
-            0, 7, 15, 16, 7,
-            60, 5, 8, 14, 479,
-            0, 0, 4, 1, 12,
-            4, 4, 1, 0, 2,
-            0, 1, 0 , 2, 1,
-            11, 5, 5, 3, 30, 
-            29, 769, 12, 0, 10,
-            97, 20, 3, 6, 6))
+# create springfield object
+springfield <- tibble(
+  name = "Springfield",
+  pop = 151032,
+  homicide = 5,
+  rape = 82,
+  robbery = 145,
+  ag_assault = 597,
+  burglary = 2123,
+  larceny = 8440,
+  mv_larceny = 700,
+  arson = 97
+)
 
-arson <- left_join(placesSub, arson, by = "name") 
-arsonTable <- bind_rows(arsonTable, arson)
+# create university city object
+u_city <- tibble(
+  name = "University City",
+  pop = 41133,
+  homicide = 1,
+  rape = 16,
+  robbery = 129,
+  ag_assault = 101,
+  burglary = 464,
+  larceny = 1697,
+  mv_larceny = 341,
+  arson = 20
+)
+
+# combine
+data <- bind_rows(kansas_city, st_jo, st_louis, springfield, u_city)
+
+# add place data
+data <- left_join(placesSub, data, by = "name")
+
+# clean-up enviornment
+rm(placesSub, kansas_city, st_jo, st_louis, springfield, u_city)
+
+# update population object
+popTable <- subset_tables(input = data, update = popTable, table = "population")
+
+# update homicide object
+homicideTable <- subset_tables(input = data, update = homicideTable, table = "homicide")
+
+# update robbery object
+robberyTable <- subset_tables(input = data, update = robberyTable, table = "robbery")
+
+# update aggrevated assault object
+agAssaultTable <- subset_tables(input = data, update = agAssaultTable, table = "aggravated assault")
+
+# create rape object
+rapeTable <- subset_tables(input = data, update = rapeTable, table = "rape")
+
+# create burlary object
+burglaryTable <- subset_tables(input = data, update = burglaryTable, table = "burglary")
+
+# create larceny object
+larcenyTable <- subset_tables(input = data, update = larcenyTable, table = "larceny")
+
+# create auto theft object
+autoTheftTable <- subset_tables(input = data, update = autoTheftTable, table = "auto theft")
+
+# create arson object
+arsonTable <- subset_tables(input = data, update = arsonTable, table = "arson")
+
+# clean-up enviornment
+rm(index, data, year)
