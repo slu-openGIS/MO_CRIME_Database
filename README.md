@@ -2,7 +2,7 @@
 
 This repository contains the raw data and code for creating `MO_CRIME_Database.sqlite`. The database, which is located in the `data/` directory, is a longitudinal database containing counts for each Part 1 crime category per year for Missouri municipalities that reported data to the Federal Bureau of Investigation's Uniform Crime Reporting program.
 
-For the period 1980-1998, the database contains data for Kansas City, St. Joseph, St. Louis, Springfield, and University City. For the period 1999-2018, it contains all municipal level data reported by the FBI.
+For the period 1979-1998, the database contains data for Kansas City, St. Joseph, St. Louis, Springfield, and University City. For the period 1999-2018, it contains all municipal level data reported by the FBI.
 
 The database will be continually updated with historical data with the eventual goal of containing all count data from 1940 onwards. If you are interested in working with pre-1999 data for Missouri, the `data/raw` folder contains the relevant extrats from the *Crime in the United States* publications for each year.
 

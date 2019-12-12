@@ -27,7 +27,7 @@ states <- tibble(
   state_name = c(state.name, "District Of Columbia"))
 
 # create database tables
-years <- c(1980:2018)
+years <- c(1979:2018)
 
 years %>%
   unlist() %>%

@@ -91,31 +91,32 @@ data <- left_join(placesSub, data, by = "name")
 rm(placesSub, kansas_city, st_jo, st_louis, springfield, u_city)
 
 # update population object
-popTable <- subset_tables(input = data, table = "population")
+popTable <- subset_tables(input = data, update = popTable, table = "population")
 
 # update homicide object
-homicideTable <- subset_tables(input = data, table = "homicide")
+homicideTable <- subset_tables(input = data, update = homicideTable, table = "homicide")
 
 # update robbery object
-robberyTable <- subset_tables(input = data, table = "robbery")
+robberyTable <- subset_tables(input = data, update = robberyTable, table = "robbery")
 
 # update aggrevated assault object
-agAssaultTable <- subset_tables(input = data, table = "aggravated assault")
+agAssaultTable <- subset_tables(input = data, update = agAssaultTable, table = "aggravated assault")
 
 # create rape object
-rapeTable <- subset_tables(input = data, table = "rape")
+rapeTable <- subset_tables(input = data, update = rapeTable, table = "rape")
 
 # create burlary object
-burglaryTable <- subset_tables(input = data, table = "burglary")
+burglaryTable <- subset_tables(input = data, update = burglaryTable, table = "burglary")
 
 # create larceny object
-larcenyTable <- subset_tables(input = data, table = "larceny")
+larcenyTable <- subset_tables(input = data, update = larcenyTable, table = "larceny")
 
 # create auto theft object
-autoTheftTable <- subset_tables(input = data, table = "auto theft")
+autoTheftTable <- subset_tables(input = data, update = autoTheftTable, table = "auto theft")
 
 # create arson object
-arsonTable <- subset_tables(input = data, table = "arson")
+arsonTable <- subset_tables(input = data, update = arsonTable, table = "arson")
 
 # clean-up enviornment
 rm(index, data, year)
+
